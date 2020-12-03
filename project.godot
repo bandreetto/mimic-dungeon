@@ -16,7 +16,7 @@ _global_script_class_icons={
 [application]
 
 config/name="Mimic Dungeon"
-run/main_scene="res://root.tscn"
+run/main_scene="res://scenes/main/main.tscn"
 config/icon="res://icon.png"
 
 [display]
