@@ -4,24 +4,23 @@
 [ext_resource path="res://mimic/mimic1/mimic.tres" type="SpriteFrames" id=2]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 14.8213, 15.7964 )
+extents = Vector2( 11.7597, 10.991 )
 
-[node name="mimic" type="Node2D"]
-
-[node name="mimic" type="KinematicBody2D" parent="."]
-position = Vector2( 128.728, 108.506 )
+[node name="mimic" type="KinematicBody2D"]
+collision_layer = 4
+collision_mask = 2147483649
 script = ExtResource( 1 )
 __meta__ = {
 "_edit_group_": true
 }
 
-[node name="sprite" type="AnimatedSprite" parent="mimic"]
-position = Vector2( 30.5712, 31.2012 )
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 159.299, 139.707 )
 scale = Vector2( 1.42251, 1.46189 )
 frames = ExtResource( 2 )
 animation = "idle"
-frame = 1
+playing = true
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="mimic"]
-position = Vector2( 29.1498, 38.9549 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 157.878, 147.461 )
 shape = SubResource( 1 )
