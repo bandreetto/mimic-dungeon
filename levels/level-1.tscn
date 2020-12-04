@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=2]
+[gd_scene load_steps=7 format=2]
 
 [ext_resource path="res://environment/misc.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/walls.tres" type="TileSet" id=2]
 [ext_resource path="res://environment/floors.tres" type="TileSet" id=3]
 [ext_resource path="res://player/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://mimic/mimic1/mimic.tscn" type="PackedScene" id=5]
+[ext_resource path="res://mimic/mimic2/mimic2.tscn" type="PackedScene" id=6]
 
 [node name="level-1" type="Node2D"]
 
@@ -40,3 +42,18 @@ drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
+
+[node name="mimic" parent="." instance=ExtResource( 5 )]
+position = Vector2( 98.9789, -83.0199 )
+
+[node name="mimic2" parent="." instance=ExtResource( 5 )]
+position = Vector2( -122, 15 )
+
+[node name="mimic3" parent="." instance=ExtResource( 5 )]
+position = Vector2( -86, 119 )
+
+[node name="mimic4" parent="." instance=ExtResource( 6 )]
+position = Vector2( -27.3724, 141.581 )
+
+[node name="mimic5" parent="." instance=ExtResource( 6 )]
+position = Vector2( 156.683, 12.2704 )

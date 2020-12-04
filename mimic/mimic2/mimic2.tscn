@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://mimic/mimic2/mimic2.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://mimic/mimic2/mimic2.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 13.484, 11.8394 )
+
+[node name="mimic2" type="Node2D"]
+
+[node name="mimic2" type="KinematicBody2D" parent="."]
+position = Vector2( 3.78403, 1.26134 )
+script = ExtResource( 2 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="sprite" type="AnimatedSprite" parent="mimic2"]
+position = Vector2( 60.6011, 48.9434 )
+scale = Vector2( 1.49928, 1.38103 )
+frames = ExtResource( 1 )
+animation = "idle"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="mimic2"]
+position = Vector2( 59.894, 53.4153 )
+shape = SubResource( 1 )
