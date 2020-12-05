@@ -1,0 +1,39 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://scenes/mimic/mimic1/mimic.gd" type="Script" id=1]
+[ext_resource path="res://scenes/mimic/mimic1/mimic.tres" type="SpriteFrames" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 11.7597, 10.991 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 25.5018
+height = 0.0
+
+[node name="mimic" type="KinematicBody2D"]
+position = Vector2( -9.11334, -4.65241 )
+collision_layer = 4
+collision_mask = 2147483649
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_group_": true
+}
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+position = Vector2( 159.299, 139.707 )
+scale = Vector2( 1.42251, 1.46189 )
+frames = ExtResource( 2 )
+animation = "idle"
+frame = 1
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 157.878, 147.461 )
+shape = SubResource( 1 )
+
+[node name="hurtbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( 157.569, 146.674 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

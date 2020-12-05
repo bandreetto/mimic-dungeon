@@ -3,11 +3,11 @@
 [ext_resource path="res://environment/misc.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/walls.tres" type="TileSet" id=2]
 [ext_resource path="res://environment/floors.tres" type="TileSet" id=3]
-[ext_resource path="res://player/player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://mimic/mimic1/mimic.tscn" type="PackedScene" id=5]
-[ext_resource path="res://mimic/mimic2/mimic2.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/chest/chest.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/barrel/barrel.tscn" type="PackedScene" id=6]
 
-[node name="level-1" type="Node2D"]
+[node name="level-1" type="YSort"]
 
 [node name="Floors" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
@@ -44,17 +44,92 @@ drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
 
-[node name="enemies" type="Node2D" parent="."]
+[node name="destroy" type="YSort" parent="."]
 
-[node name="mimic2" parent="enemies" instance=ExtResource( 5 )]
-position = Vector2( -122, 15 )
+[node name="barrels" type="Node2D" parent="destroy"]
 
-[node name="mimic4" parent="enemies" instance=ExtResource( 6 )]
-position = Vector2( -27.3724, 141.581 )
+[node name="barrel" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 49.3891, 268.303 )
 
-[node name="mimic5" parent="enemies" instance=ExtResource( 6 )]
-position = Vector2( 156.683, 12.2704 )
+[node name="barrel2" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 105.983, 269.299 )
 
-[node name="mimic" parent="enemies" instance=ExtResource( 5 )]
-position = Vector2( 26, -79 )
-isMimic = true
+[node name="barrel3" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 77.4826, 268.902 )
+
+[node name="barrel4" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 133.059, 268.123 )
+
+[node name="barrel5" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 156.394, 268.83 )
+
+[node name="barrel6" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 382.668, 166.3 )
+
+[node name="barrel7" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 361.455, 188.22 )
+
+[node name="barrel8" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 125.149, 61.9722 )
+
+[node name="barrel9" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 475.015, 266.02 )
+
+[node name="barrel10" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 434.755, 77.4356 )
+
+[node name="barrel11" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 437.934, 56.2464 )
+
+[node name="barrel12" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 413.566, 62.6031 )
+
+[node name="barrel13" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 60.7649, 128.29 )
+
+[node name="barrel14" parent="destroy/barrels" instance=ExtResource( 6 )]
+position = Vector2( 101.024, 77.4356 )
+
+[node name="chests" type="Node2D" parent="destroy"]
+
+[node name="chest" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 234.882, 270.952 )
+
+[node name="chest2" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 293.565, 268.835 )
+
+[node name="chest3" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 319.028, 268.123 )
+
+[node name="chest4" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 264.581, 269.538 )
+
+[node name="chest5" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 348.727, 266.709 )
+
+[node name="chest6" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 480.249, 166.3 )
+
+[node name="chest7" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 362.869, 166.3 )
+
+[node name="chest8" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 383.375, 184.685 )
+
+[node name="chest9" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 98.9056, 54.1274 )
+
+[node name="chest10" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 74.5379, 62.6031 )
+
+[node name="chest11" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 39.5756, 111.338 )
+
+[node name="chest12" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 39.5756, 139.944 )
+
+[node name="chest13" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 391.317, 63.6626 )
+
+[node name="chest14" parent="destroy/chests" instance=ExtResource( 5 )]
+position = Vector2( 479.253, 61.5437 )

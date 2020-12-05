@@ -19,3 +19,8 @@ func _physics_process(delta):
 		velocity.y += 2 * direction
 		
 		velocity = move_and_slide(velocity, Vector2.ZERO)
+
+
+func _on_hurtbox_area_entered(area):
+	print('entered')
+	$sprite.play('attack')
