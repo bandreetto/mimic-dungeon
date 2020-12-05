@@ -7,8 +7,11 @@ var animationPlayer = null
 
 func _ready():
 	animationPlayer = $AnimationPlayer
+	
 
 func _physics_process(delta):
+	if Input.is_action_just_released("ui_select"):
+		$Sprite/Swordhit/SwordCollision.set_deferred("disabled", true)
 	if Input.is_action_pressed("ui_select"):
 		animationPlayer.play("attack1")
 	else:
