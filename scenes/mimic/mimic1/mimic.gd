@@ -1,8 +1,7 @@
 extends KinematicBody2D
 
-export var direction = 1
-var velocity = Vector2()
-var hitten = false
+#export var direction = 1
+#var velocity = Vector2()
 var knockback = Vector2.ZERO
 onready var stats = $stats
 
@@ -25,4 +24,15 @@ func _on_hurtbox_area_entered(area):
 	stats.health -= area.damage
 	
 func _on_stats_no_health():
+	$Timer.start()
+	$sprite.queue_free()
+	$CollisionShape2D.queue_free()
+	$hurtbox.queue_free()
+	var scene = load("res://scenes/mimic/mimic1/dieEffect/mimic1DieEffect.tscn")
+	var instance = scene.instance()
+	var main = get_tree().current_scene
+	instance.global_position = global_position
+	main.add_child(instance)
+
+func _on_Timer_timeout():
 	queue_free()
