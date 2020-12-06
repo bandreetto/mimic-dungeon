@@ -21,6 +21,7 @@ script = ExtResource( 1 )
 scale = Vector2( 1.01438, 0.966951 )
 frames = ExtResource( 2 )
 animation = "attack"
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -38,3 +39,4 @@ shape = SubResource( 2 )
 
 [node name="stats" parent="." instance=ExtResource( 3 )]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="no_health" from="stats" to="." method="_on_stats_no_health"]

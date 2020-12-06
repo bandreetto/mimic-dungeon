@@ -1,10 +1,11 @@
 extends Node2D
 
 export var max_health = 3
-onready var health = max_health
+onready var health = max_health setget set_health 
+signal no_health
 
-func take_damage(damage):
-	if health > 0:
-		health = health - damage
-		print("health", health)
-	
+func set_health(value):
+	health = value
+	if health <= 0:
+		emit_signal("no_health")
+

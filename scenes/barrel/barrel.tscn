@@ -41,7 +41,7 @@ collision_layer = 4
 [node name="Sprite" type="AnimatedSprite" parent="StaticBody2D"]
 frames = SubResource( 4 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -56,4 +56,8 @@ collision_mask = 0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2( -0.749149, 5.24407 )
 shape = SubResource( 6 )
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]

@@ -19,6 +19,7 @@ script = ExtResource( 2 )
 scale = Vector2( 1.49928, 1.38103 )
 frames = ExtResource( 1 )
 animation = "attack"
+frame = 4
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]

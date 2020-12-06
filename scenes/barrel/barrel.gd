@@ -1,29 +1,12 @@
 extends Node2D
 
 export var isMimic = false
-var timer = null
-var mimic_delay = 0.5
 
-func _ready():
-	timer = Timer.new()
-	timer.set_one_shot(true)
-	timer.set_wait_time(mimic_delay)
-	timer.connect('timeout', self, 'on_timeout_complete')
-	add_child(timer)
-	
 func _on_hurtbox_area_entered(area):
 	create_destroy_effect()
 	$StaticBody2D.queue_free()
 	$hurtbox.queue_free()
-	timer.start()
-	print('iniciado timer')
-
-func on_timeout_complete():
-	print('finalizou timer')
-	if isMimic == true:
-		create_mimic_instance()
-	queue_free()
-	   
+	$Timer.start()
 
 func create_destroy_effect():
 	var scene = load("res://scenes/barrel/effect/barrelEffect.tscn")
@@ -40,3 +23,7 @@ func create_mimic_instance():
 	main.add_child(instance)
 
 
+func _on_Timer_timeout():
+	if isMimic == true:
+		create_mimic_instance()
+	queue_free()

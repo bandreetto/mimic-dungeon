@@ -22,4 +22,7 @@ func _physics_process(delta):
 
 func _on_hurtbox_area_entered(area):
 	knockback = area.knockback_vector * 100
-	stats.take_damage(1)
+	stats.health -= area.damage
+	
+func _on_stats_no_health():
+	queue_free()
