@@ -35,5 +35,6 @@ animations = [ {
 scale = Vector2( 0.458332, 0.466618 )
 frames = SubResource( 6 )
 animation = "hit"
+frame = 2
 playing = true
 script = ExtResource( 1 )
