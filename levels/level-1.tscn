@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://environment/misc.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/walls.tres" type="TileSet" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://scenes/player/player.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/objects/chest/chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/objects/barrel/barrel.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/player/UI/HealthUI.tscn" type="PackedScene" id=7]
 
 [node name="level-1" type="YSort"]
 
@@ -129,11 +130,8 @@ position = Vector2( 479.253, 61.5437 )
 
 [node name="Player" type="Node2D" parent="."]
 
-[node name="player" parent="Player" instance=ExtResource( 4 )]
+[node name="PlayerCamera" type="Camera2D" parent="Player"]
 position = Vector2( 237, 139 )
-collision_mask = 4
-
-[node name="Camera2D" type="Camera2D" parent="Player/player"]
 current = true
 drag_margin_h_enabled = true
 drag_margin_v_enabled = true
@@ -143,3 +141,19 @@ drag_margin_left = 0.0
 drag_margin_top = 0.0
 drag_margin_right = 0.0
 drag_margin_bottom = 0.0
+
+[node name="player" parent="Player" instance=ExtResource( 4 )]
+position = Vector2( 237, 139 )
+collision_mask = 4
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/player"]
+remote_path = NodePath("../../PlayerCamera")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 7 )]
+margin_left = 7.99185
+margin_top = 8.81473
+margin_right = 47.9919
+margin_bottom = 48.8147
+rect_scale = Vector2( 1.5, 1.5 )
