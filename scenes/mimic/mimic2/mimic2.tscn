@@ -1,28 +1,37 @@
-[gd_scene load_steps=4 format=2]
+[gd_scene load_steps=5 format=2]
 
 [ext_resource path="res://scenes/mimic/mimic2/mimic2.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/mimic/mimic2/mimic2.gd" type="Script" id=2]
 
-
 [sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 10.1207, 8.05523 )
 
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 16.1079
+height = 5.11656
+
 [node name="mimic2" type="KinematicBody2D"]
-position = Vector2( -0.840912, -2.5227 )
 collision_layer = 4
 collision_mask = 0
 script = ExtResource( 2 )
-__meta__ = {
-"_edit_group_": true
-}
 
 [node name="sprite" type="AnimatedSprite" parent="."]
-position = Vector2( 64.3851, 50.2047 )
 scale = Vector2( 1.49928, 1.38103 )
 frames = ExtResource( 1 )
-animation = "idle"
+animation = "attack"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2( 64.0985, 61.4038 )
+position = Vector2( -0.793701, 11.9055 )
 shape = SubResource( 1 )
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( -1.19055, 6.34961 )
+shape = SubResource( 2 )
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hutbox_area_entered"]

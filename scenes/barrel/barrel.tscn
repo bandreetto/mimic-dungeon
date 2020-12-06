@@ -36,11 +36,12 @@ extents = Vector2( 5.25509, 5.25635 )
 script = ExtResource( 2 )
 
 [node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 4
 
 [node name="Sprite" type="AnimatedSprite" parent="StaticBody2D"]
 frames = SubResource( 4 )
 animation = "idle"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
@@ -48,6 +49,8 @@ position = Vector2( -0.749153, 5.24407 )
 shape = SubResource( 5 )
 
 [node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
 position = Vector2( -0.749149, 5.24407 )
