@@ -19,6 +19,10 @@ config/name="Mimic Dungeon"
 run/main_scene="res://scenes/main/main.tscn"
 config/icon="res://icon.png"
 
+[autoload]
+
+PlayerStats="*res://scenes/player/stats/playerStats.tscn"
+
 [display]
 
 window/size/width=512

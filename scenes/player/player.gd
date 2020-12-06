@@ -1,12 +1,16 @@
 extends KinematicBody2D
 
+const dieEffect = preload("res://scenes/player/deathEffect/playerDeathEffect.tscn")
 const velocity = Vector2(0,0)
 const SPEED = 100
 
 var animationPlayer = null
 onready var swordHitbox = $Sprite/Swordhit
+onready var hurtBox = $hurtbox
+onready var stats = PlayerStats
 
 func _ready():
+	stats.connect("no_health", self, "on_death_called")
 	animationPlayer = $AnimationPlayer
 	swordHitbox.knockback_vector = Vector2.ZERO
 	
@@ -42,3 +46,18 @@ func _physics_process(delta):
 		velocity.x = lerp(velocity.x, 0, 0.2)
 		velocity.y = lerp(velocity.y, 0, 0.2)
 		
+
+func on_death_called():
+	death_effect()
+	queue_free()
+
+func death_effect():
+	var instance = dieEffect.instance()
+	var main = get_tree().current_scene
+	instance.global_position = global_position
+	main.add_child(instance)
+
+func _on_hurtbox_area_entered(area):
+	stats.health -= 1
+	hurtBox.start_invincibility(1)
+	hurtBox.create_hit_effect()

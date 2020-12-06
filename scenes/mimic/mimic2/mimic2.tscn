@@ -1,40 +1,37 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://scenes/mimic/mimic2/mimic2.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/mimic/mimic2/mimic2.gd" type="Script" id=2]
 [ext_resource path="res://scenes/stats/stats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/mimic/detectionZone/PlayerDetectionZone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/effects/damage/hitbox/hitbox.tscn" type="PackedScene" id=5]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 10.1207, 8.05523 )
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 12.4077, 10 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 16.1079
 height = 5.11656
 
+[sub_resource type="CapsuleShape2D" id=4]
+
 [node name="mimic2" type="KinematicBody2D"]
 collision_layer = 4
-collision_mask = 0
+collision_mask = 2
 script = ExtResource( 2 )
 
 [node name="sprite" type="AnimatedSprite" parent="."]
-scale = Vector2( 1.49928, 1.38103 )
+scale = Vector2( 1.3477, 1.21989 )
 frames = ExtResource( 1 )
 animation = "attack"
-frame = 4
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.793701, 11.9055 )
-shape = SubResource( 1 )
-
-[node name="hurtbox" type="Area2D" parent="."]
-collision_layer = 32
-collision_mask = 0
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
-position = Vector2( -1.19055, 6.34961 )
-shape = SubResource( 2 )
+scale = Vector2( 0.0566734, 0.0836182 )
+shape = SubResource( 3 )
+disabled = true
 
 [node name="stats" parent="." instance=ExtResource( 3 )]
 
@@ -42,7 +39,27 @@ shape = SubResource( 2 )
 wait_time = 0.5
 
 [node name="PlayerDetectionZone" parent="." instance=ExtResource( 4 )]
-[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
-[connection signal="area_entered" from="hurtbox" to="." method="_on_hutbox_area_entered"]
+
+[node name="hurtbox" type="Area2D" parent="."]
+scale = Vector2( 0.852209, 0.793485 )
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( -1.19055, 6.34961 )
+shape = SubResource( 2 )
+
+[node name="hitbox" parent="." instance=ExtResource( 5 )]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2( 0, 5 )
+scale = Vector2( 1.33458, 0.557181 )
+shape = SubResource( 4 )
 [connection signal="no_health" from="stats" to="." method="_on_stats_no_health"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hutbox_area_entered"]
+
+[editable path="hitbox"]
