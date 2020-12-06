@@ -1,19 +1,22 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/mimic/mimic2/mimic2.tres" type="SpriteFrames" id=1]
 [ext_resource path="res://scenes/mimic/mimic2/mimic2.gd" type="Script" id=2]
 [ext_resource path="res://scenes/stats/stats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/mimic/detectionZone/PlayerDetectionZone.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effects/damage/hitbox/hitbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/mimic/softCollision/softCollision.tscn" type="PackedScene" id=6]
 
-[sub_resource type="RectangleShape2D" id=3]
+[sub_resource type="RectangleShape2D" id=1]
 extents = Vector2( 12.4077, 10 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 16.1079
 height = 5.11656
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 5.23652
+height = 18.9643
 
 [node name="mimic2" type="KinematicBody2D"]
 collision_layer = 4
@@ -24,13 +27,13 @@ script = ExtResource( 2 )
 scale = Vector2( 1.3477, 1.21989 )
 frames = ExtResource( 1 )
 animation = "attack"
-frame = 2
+frame = 1
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2( -0.793701, 11.9055 )
 scale = Vector2( 0.0566734, 0.0836182 )
-shape = SubResource( 3 )
+shape = SubResource( 1 )
 disabled = true
 
 [node name="stats" parent="." instance=ExtResource( 3 )]
@@ -56,10 +59,17 @@ collision_mask = 16
 [node name="CollisionShape2D" parent="hitbox" index="0"]
 position = Vector2( 0, 5 )
 scale = Vector2( 1.33458, 0.557181 )
-shape = SubResource( 4 )
+shape = SubResource( 3 )
+
+[node name="softCollision" parent="." instance=ExtResource( 6 )]
+
+[node name="CollisionShape2D" parent="softCollision" index="0"]
+position = Vector2( 0, 8.18949 )
 [connection signal="no_health" from="stats" to="." method="_on_stats_no_health"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hutbox_area_entered"]
 
 [editable path="hitbox"]
+
+[editable path="softCollision"]

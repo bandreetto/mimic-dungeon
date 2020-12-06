@@ -10,6 +10,7 @@ var knockback = Vector2.ZERO
 onready var stats = $stats
 onready var detection = $PlayerDetectionZone
 onready var sprite = $sprite
+onready var softCollision = $softCollision
 
 enum {
 	IDLE, WANDER, CHASE
@@ -40,6 +41,8 @@ func _physics_process(delta):
 	
 	if sprite != null:
 		sprite.flip_h = velocity.x < 0
+	if softCollision.is_colliding():
+		velocity += softCollision.get_push_vector() * delta * 400
 	velocity = move_and_slide(velocity)
 
 func seek_player():

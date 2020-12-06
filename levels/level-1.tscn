@@ -31,21 +31,6 @@ collision_mask = 0
 format = 1
 tile_data = PoolIntArray( 2, 3, 0, 4, 3, 1, 6, 3, 0, 9, 3, 0, 14, 3, 1, 65538, 3, 65536, 65540, 3, 65537, 65542, 3, 65536, 65545, 3, 65537, 65550, 3, 65536, 131073, 2, 0, 131074, 1, 0, 131083, 1, 0, 196614, 2, 0, 196622, 6, 0, 262156, 2, 0, 327683, 1, 0, 327688, 1, 0, 393217, 2, 0, 393228, 6, 0, 458755, 1, 0, 458760, 2, 0 )
 
-[node name="player" parent="." instance=ExtResource( 4 )]
-position = Vector2( 237, 139 )
-collision_mask = 4
-
-[node name="Camera2D" type="Camera2D" parent="player"]
-current = true
-drag_margin_h_enabled = true
-drag_margin_v_enabled = true
-smoothing_enabled = true
-smoothing_speed = 4.0
-drag_margin_left = 0.0
-drag_margin_top = 0.0
-drag_margin_right = 0.0
-drag_margin_bottom = 0.0
-
 [node name="destroy" type="YSort" parent="."]
 
 [node name="barrels" type="Node2D" parent="destroy"]
@@ -141,3 +126,20 @@ position = Vector2( 391.317, 63.6626 )
 
 [node name="chest14" parent="destroy/chests" instance=ExtResource( 5 )]
 position = Vector2( 479.253, 61.5437 )
+
+[node name="Player" type="Node2D" parent="."]
+
+[node name="player" parent="Player" instance=ExtResource( 4 )]
+position = Vector2( 237, 139 )
+collision_mask = 4
+
+[node name="Camera2D" type="Camera2D" parent="Player/player"]
+current = true
+drag_margin_h_enabled = true
+drag_margin_v_enabled = true
+smoothing_enabled = true
+smoothing_speed = 4.0
+drag_margin_left = 0.0
+drag_margin_top = 0.0
+drag_margin_right = 0.0
+drag_margin_bottom = 0.0

@@ -1,12 +1,13 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://scenes/mimic/mimic1/mimic.gd" type="Script" id=1]
 [ext_resource path="res://scenes/mimic/mimic1/mimic.tres" type="SpriteFrames" id=2]
 [ext_resource path="res://scenes/stats/stats.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/mimic/detectionZone/PlayerDetectionZone.tscn" type="PackedScene" id=4]
 [ext_resource path="res://scenes/effects/damage/hitbox/hitbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/mimic/softCollision/softCollision.tscn" type="PackedScene" id=6]
 
-[sub_resource type="CapsuleShape2D" id=4]
+[sub_resource type="CapsuleShape2D" id=1]
 radius = 0.285516
 height = 0.0324326
 
@@ -27,11 +28,12 @@ script = ExtResource( 1 )
 scale = Vector2( 1.01438, 0.966951 )
 frames = ExtResource( 2 )
 animation = "attack"
+frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2( -5.57213, -1.69832 )
-shape = SubResource( 4 )
+shape = SubResource( 1 )
 disabled = true
 
 [node name="stats" parent="." instance=ExtResource( 3 )]
@@ -57,8 +59,15 @@ collision_mask = 16
 
 [node name="CollisionShape2D" parent="hitbox" index="0"]
 shape = SubResource( 3 )
+
+[node name="softCollision" parent="." instance=ExtResource( 6 )]
+
+[node name="CollisionShape2D" parent="softCollision" index="0"]
+position = Vector2( -1.49831, 4.30763 )
 [connection signal="no_health" from="stats" to="." method="_on_stats_no_health"]
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="hitbox"]
+
+[editable path="softCollision"]

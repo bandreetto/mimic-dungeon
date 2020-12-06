@@ -1,12 +1,13 @@
-[gd_scene load_steps=10 format=2]
+[gd_scene load_steps=11 format=2]
 
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/adventurer-sprite-sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player/Swordhit.gd" type="Script" id=3]
 [ext_resource path="res://scenes/effects/damage/hurtbox/hurtbox.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/player/UI/HealthUI.tscn" type="PackedScene" id=5]
 
 [sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 6.38531, 8.58698 )
+extents = Vector2( 7.29937, 12.0038 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.97571
@@ -87,7 +88,7 @@ frame = 27
 [node name="Swordhit" type="Area2D" parent="Sprite"]
 scale = Vector2( 0.993217, 0.947333 )
 collision_layer = 0
-collision_mask = 32
+collision_mask = 8
 script = ExtResource( 3 )
 
 [node name="SwordCollision" type="CollisionShape2D" parent="Sprite/Swordhit"]
@@ -109,7 +110,16 @@ anims/walk = SubResource( 5 )
 [node name="hurtbox" parent="." instance=ExtResource( 4 )]
 position = Vector2( -2, 5 )
 scale = Vector2( 0.581526, 0.794782 )
-collision_layer = 16
+
+[node name="CollisionShape2D" parent="hurtbox" index="0"]
+position = Vector2( 0.341215, 1.49796 )
+
+[node name="HealthUI" parent="." instance=ExtResource( 5 )]
+margin_left = -20.8596
+margin_top = -19.799
+margin_right = 19.1404
+margin_bottom = 20.201
+rect_scale = Vector2( 0.5, 0.5 )
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="hurtbox"]

@@ -71,6 +71,7 @@ ui_down={
 2d_physics/layer_4="objects"
 2d_physics/layer_5="PlayerHurtbox"
 2d_physics/layer_6="EnemyHurtbox"
+2d_physics/layer_7="SoftCollision"
 
 [rendering]
 

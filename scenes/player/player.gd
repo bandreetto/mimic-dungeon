@@ -54,7 +54,7 @@ func on_death_called():
 func death_effect():
 	var instance = dieEffect.instance()
 	var main = get_tree().current_scene
-	instance.global_position = global_position
+	instance.global_position = (global_position + Vector2(5,5))
 	main.add_child(instance)
 
 func _on_hurtbox_area_entered(area):
