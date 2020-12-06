@@ -12,7 +12,6 @@ func set_hearts(value):
 	hearts = clamp(value, 0, max_hearts)
 	if heartUI != null:
 		heartUI.rect_size.x = hearts * 64
-		print("hearts: ", hearts)
 		
 func _ready():
 	self.max_hearts = PlayerStats.max_health

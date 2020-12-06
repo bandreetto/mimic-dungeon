@@ -21,7 +21,6 @@ func set_invincible(value):
 		emit_signal("invincibility_ended")
 
 func start_invincibility(duration):
-	print("invincibility started")
 	self.invincible = true
 	timer.start(duration)
 
