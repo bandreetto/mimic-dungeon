@@ -4,6 +4,7 @@ export var direction = 1
 var velocity = Vector2()
 var hitten = false
 var knockback = Vector2.ZERO
+onready var stats = $stats
 
 func _ready():
 	pass
@@ -20,5 +21,5 @@ func _physics_process(delta):
 
 
 func _on_hurtbox_area_entered(area):
-
 	knockback = area.knockback_vector * 100
+	stats.take_damage(1)

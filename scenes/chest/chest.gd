@@ -4,8 +4,9 @@ export var isMimic = false
 
 func _on_hutbox_area_entered(area):
 	create_destroy_effect()
-	queue_free()
-	create_mimic_instance()
+	$StaticBody2D.queue_free()
+	$hutbox.queue_free()
+	$Timer.start()
 
 func create_destroy_effect():
 	var scene = load("res://scenes/chest/effect/chestEffect.tscn")
@@ -15,9 +16,14 @@ func create_destroy_effect():
 	main.add_child(instance)
 
 func create_mimic_instance():
+	var scene = load("res://scenes/mimic/mimic2/mimic2.tscn")
+	var instance = scene.instance()
+	var main = get_tree().current_scene
+	instance.global_position = global_position
+	main.add_child(instance)
+
+
+func _on_Timer_timeout():
 	if isMimic == true:
-		var scene = load("res://scenes/mimic/mimic2/mimic2.tscn")
-		var instance = scene.instance()
-		var main = get_tree().current_scene
-		instance.global_position = global_position
-		main.add_child(instance)
+		create_mimic_instance()
+	queue_free()
