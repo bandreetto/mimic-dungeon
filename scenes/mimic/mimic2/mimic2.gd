@@ -6,7 +6,8 @@ export var FRICTION = 100
 
 const dieEffect = preload("res://scenes/mimic/mimic2/dieEffect/mimic2DieEffect.tscn")
 const hitEffect = preload("res://scenes/effects/hit/hitEffect.tscn")
-var knockback = Vector2.ZERO
+const coin = preload("res://scenes/objects/coin/Coin.tscn")
+
 onready var stats = $stats
 onready var detection = $PlayerDetectionZone
 onready var sprite = $sprite
@@ -18,9 +19,14 @@ enum {
 }
 var state = IDLE
 var velocity = Vector2.ZERO
+var knockback = Vector2.ZERO
+var has_coin = false  setget set_has_coin
 
 func _ready():
 	pass
+
+func set_has_coin(value):
+	has_coin = value
 	
 func _physics_process(delta):
 	knockback = knockback.move_toward(Vector2.ZERO, 100*delta)
@@ -68,7 +74,6 @@ func _on_hurtbox_area_entered(area):
 	knockback = area.knockback_vector * 100
 	stats.health -= area.damage
 	hit_effect()
-	
 
 func _on_stats_no_health():
 	$Timer.start()
@@ -76,7 +81,7 @@ func _on_stats_no_health():
 	$CollisionShape2D.queue_free()
 	$hurtbox.queue_free()
 	death_effect()
-
+	drop_coin()
 
 func _on_Timer_timeout():
 	queue_free()
@@ -87,6 +92,13 @@ func death_effect():
 	instance.global_position = global_position
 	main.add_child(instance)
 	
+func drop_coin():
+	if has_coin:
+		var instance = coin.instance()
+		var main = get_tree().current_scene
+		instance.global_position = Vector2(rand_range(206, 306),rand_range(130,190))
+		main.add_child(instance)
+		
 func hit_effect():
 	var instance = hitEffect.instance()
 	var main = get_tree().current_scene

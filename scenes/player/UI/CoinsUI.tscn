@@ -1,0 +1,51 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://scenes/player/UI/CoinsUI.gd" type="Script" id=1]
+[ext_resource path="res://assets/images/coins.png" type="Texture" id=2]
+
+[sub_resource type="AtlasTexture" id=1]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 0, 0, 208, 192 )
+
+[sub_resource type="AtlasTexture" id=2]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 208, 0, 208, 192 )
+
+[sub_resource type="AtlasTexture" id=3]
+flags = 4
+atlas = ExtResource( 2 )
+region = Rect2( 501, 0, 167, 192 )
+
+[sub_resource type="SpriteFrames" id=4]
+animations = [ {
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ) ],
+"loop": true,
+"name": "spin",
+"speed": 5.0
+} ]
+
+[node name="CoinsUI" type="Control"]
+margin_right = 40.0
+margin_bottom = 40.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="AnimatedSprite" type="AnimatedSprite" parent="."]
+position = Vector2( 25.754, 17.0883 )
+scale = Vector2( 0.0997461, 0.1015 )
+frames = SubResource( 4 )
+animation = "spin"
+
+[node name="Label" type="Label" parent="."]
+margin_left = 42.7632
+margin_top = 10.6908
+margin_right = 82.7632
+margin_bottom = 24.6908
+text = "x 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}

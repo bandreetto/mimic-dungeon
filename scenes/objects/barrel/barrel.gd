@@ -1,6 +1,7 @@
 extends Node2D
 
 export var isMimic = false
+export var has_coin = false
 
 func _on_hurtbox_area_entered(area):
 	create_destroy_effect()
@@ -18,6 +19,7 @@ func create_destroy_effect():
 func create_mimic_instance():
 	var scene = load("res://scenes/mimic/mimic1/mimic.tscn")
 	var instance = scene.instance()
+	instance.set_has_coin(has_coin)
 	var main = get_tree().current_scene
 	instance.global_position = global_position
 	main.add_child(instance)

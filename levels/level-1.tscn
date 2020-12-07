@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://environment/misc.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/walls.tres" type="TileSet" id=2]
@@ -8,6 +8,7 @@
 [ext_resource path="res://scenes/objects/barrel/barrel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/player/UI/HealthUI.tscn" type="PackedScene" id=7]
 [ext_resource path="res://levels/level-1.gd" type="Script" id=8]
+[ext_resource path="res://scenes/player/UI/CoinsUI.tscn" type="PackedScene" id=9]
 
 [node name="level-1" type="YSort"]
 script = ExtResource( 8 )
@@ -41,8 +42,9 @@ tile_data = PoolIntArray( 2, 3, 0, 4, 3, 1, 6, 3, 0, 9, 3, 0, 14, 3, 1, 65538, 3
 [node name="barrels" type="Node2D" parent="destroy"]
 
 [node name="barrel" parent="destroy/barrels" instance=ExtResource( 6 )]
-position = Vector2( 35.1132, 215.98 )
+position = Vector2( 200.646, 146.134 )
 isMimic = true
+has_coin = true
 
 [node name="barrel2" parent="destroy/barrels" instance=ExtResource( 6 )]
 position = Vector2( 105.983, 269.299 )
@@ -50,6 +52,7 @@ position = Vector2( 105.983, 269.299 )
 [node name="barrel3" parent="destroy/barrels" instance=ExtResource( 6 )]
 position = Vector2( 77.4826, 268.902 )
 isMimic = true
+has_coin = true
 
 [node name="barrel4" parent="destroy/barrels" instance=ExtResource( 6 )]
 position = Vector2( 133.059, 268.123 )
@@ -72,6 +75,7 @@ position = Vector2( 475.015, 266.02 )
 [node name="barrel10" parent="destroy/barrels" instance=ExtResource( 6 )]
 position = Vector2( 434.755, 77.4356 )
 isMimic = true
+has_coin = true
 
 [node name="barrel11" parent="destroy/barrels" instance=ExtResource( 6 )]
 position = Vector2( 437.934, 56.2464 )
@@ -93,6 +97,7 @@ position = Vector2( 234.882, 270.952 )
 [node name="chest2" parent="destroy/chests" instance=ExtResource( 5 )]
 position = Vector2( 293.565, 268.835 )
 isMimic = true
+has_coin = true
 
 [node name="chest3" parent="destroy/chests" instance=ExtResource( 5 )]
 position = Vector2( 319.028, 268.123 )
@@ -103,6 +108,7 @@ position = Vector2( 264.581, 269.538 )
 [node name="chest5" parent="destroy/chests" instance=ExtResource( 5 )]
 position = Vector2( 348.727, 266.709 )
 isMimic = true
+has_coin = true
 
 [node name="chest6" parent="destroy/chests" instance=ExtResource( 5 )]
 position = Vector2( 480.249, 166.3 )
@@ -122,6 +128,7 @@ position = Vector2( 74.5379, 62.6031 )
 [node name="chest11" parent="destroy/chests" instance=ExtResource( 5 )]
 position = Vector2( 39.5756, 111.338 )
 isMimic = true
+has_coin = true
 
 [node name="chest12" parent="destroy/chests" instance=ExtResource( 5 )]
 position = Vector2( 39.5756, 139.944 )
@@ -163,5 +170,11 @@ margin_top = 8.81473
 margin_right = 47.9919
 margin_bottom = 48.8147
 rect_scale = Vector2( 1.5, 1.5 )
+
+[node name="CoinsUI" parent="CanvasLayer" instance=ExtResource( 9 )]
+margin_left = 424.743
+margin_top = 2.83162
+margin_right = 464.743
+margin_bottom = 42.8316
 [connection signal="is_dead" from="Player/player" to="." method="_on_player_is_dead"]
 [connection signal="timeout" from="Player/resetTimer" to="." method="_on_resetTimer_timeout"]

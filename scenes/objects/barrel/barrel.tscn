@@ -41,7 +41,6 @@ collision_layer = 4
 [node name="Sprite" type="AnimatedSprite" parent="StaticBody2D"]
 frames = SubResource( 4 )
 animation = "idle"
-frame = 2
 playing = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]

@@ -5,12 +5,14 @@ const velocity = Vector2(0,0)
 const SPEED = 100
 
 var animationPlayer = null
+
 onready var swordHitbox = $Sprite/Swordhit
 onready var hurtBox = $hurtbox
 onready var stats = PlayerStats
 onready var menuTimer = $menuTimer
 
 signal is_dead
+signal collected_coin
 
 func _ready():
 	stats.connect("no_health", self, "on_death_called")
@@ -48,7 +50,6 @@ func _physics_process(delta):
 		
 		velocity.x = lerp(velocity.x, 0, 0.2)
 		velocity.y = lerp(velocity.y, 0, 0.2)
-		
 
 func on_death_called():
 	death_effect()
