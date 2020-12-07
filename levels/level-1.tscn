@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://environment/misc.tres" type="TileSet" id=1]
 [ext_resource path="res://environment/walls.tres" type="TileSet" id=2]
@@ -7,8 +7,10 @@
 [ext_resource path="res://scenes/objects/chest/chest.tscn" type="PackedScene" id=5]
 [ext_resource path="res://scenes/objects/barrel/barrel.tscn" type="PackedScene" id=6]
 [ext_resource path="res://scenes/player/UI/HealthUI.tscn" type="PackedScene" id=7]
+[ext_resource path="res://levels/level-1.gd" type="Script" id=8]
 
 [node name="level-1" type="YSort"]
+script = ExtResource( 8 )
 
 [node name="Floors" type="TileMap" parent="."]
 tile_set = ExtResource( 3 )
@@ -151,6 +153,8 @@ collision_mask = 4
 [node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player/player"]
 remote_path = NodePath("../../PlayerCamera")
 
+[node name="resetTimer" type="Timer" parent="Player"]
+
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 7 )]
@@ -159,3 +163,5 @@ margin_top = 8.81473
 margin_right = 47.9919
 margin_bottom = 48.8147
 rect_scale = Vector2( 1.5, 1.5 )
+[connection signal="is_dead" from="Player/player" to="." method="_on_player_is_dead"]
+[connection signal="timeout" from="Player/resetTimer" to="." method="_on_resetTimer_timeout"]

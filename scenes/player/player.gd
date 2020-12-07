@@ -8,6 +8,9 @@ var animationPlayer = null
 onready var swordHitbox = $Sprite/Swordhit
 onready var hurtBox = $hurtbox
 onready var stats = PlayerStats
+onready var menuTimer = $menuTimer
+
+signal is_dead
 
 func _ready():
 	stats.connect("no_health", self, "on_death_called")
@@ -49,6 +52,7 @@ func _physics_process(delta):
 
 func on_death_called():
 	death_effect()
+	emit_signal("is_dead")
 	queue_free()
 
 func death_effect():
