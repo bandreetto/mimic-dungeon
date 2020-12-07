@@ -165,16 +165,16 @@ remote_path = NodePath("../../PlayerCamera")
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
 [node name="HealthUI" parent="CanvasLayer" instance=ExtResource( 7 )]
-margin_left = 7.99185
-margin_top = 8.81473
-margin_right = 47.9919
-margin_bottom = 48.8147
+margin_left = 8.0
+margin_top = 9.0
+margin_right = 89.0
+margin_bottom = 27.0
 rect_scale = Vector2( 1.5, 1.5 )
 
 [node name="CoinsUI" parent="CanvasLayer" instance=ExtResource( 9 )]
-margin_left = 424.743
-margin_top = 2.83162
-margin_right = 464.743
-margin_bottom = 42.8316
+margin_left = 434.0
+margin_top = 2.0
+margin_right = 499.0
+margin_bottom = 32.0
 [connection signal="is_dead" from="Player/player" to="." method="_on_player_is_dead"]
 [connection signal="timeout" from="Player/resetTimer" to="." method="_on_resetTimer_timeout"]

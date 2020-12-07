@@ -9,4 +9,5 @@ func set_coins(value):
 		label.text = "X "+str(coins)
 
 func _ready():
+	self.coins = PlayerStats.coins
 	PlayerStats.connect("coins_changed", self, "set_coins")
