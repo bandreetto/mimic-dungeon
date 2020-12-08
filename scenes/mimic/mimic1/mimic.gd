@@ -59,7 +59,7 @@ func _physics_process(delta):
 			else:
 				state = IDLE
 	
-	if sprite != null:	
+	if sprite != null && weakref(sprite).get_ref():	
 		sprite.flip_h = velocity.x < 0
 		
 	if softCollision.is_colliding():
