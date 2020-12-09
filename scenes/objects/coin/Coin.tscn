@@ -40,7 +40,7 @@ position = Vector2( -0.648711, 0.563519 )
 scale = Vector2( 0.0553592, 0.0540819 )
 frames = SubResource( 4 )
 animation = "spin"
-frame = 2
+frame = 1
 playing = true
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
