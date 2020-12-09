@@ -67,27 +67,30 @@ position = Vector2( 133.059, 268.123 )
 position = Vector2( 156.394, 268.83 )
 
 [node name="barrel6" parent="destroy/barrels" instance=ExtResource( 6 )]
-position = Vector2( 382.668, 166.3 )
+position = Vector2( 1278, 690 )
+isMimic = true
 
 [node name="barrel7" parent="destroy/barrels" instance=ExtResource( 6 )]
-position = Vector2( 361.455, 188.22 )
+position = Vector2( 1001, 693 )
+isMimic = true
 
 [node name="barrel8" parent="destroy/barrels" instance=ExtResource( 6 )]
 position = Vector2( 125.149, 61.9722 )
 
 [node name="barrel9" parent="destroy/barrels" instance=ExtResource( 6 )]
-position = Vector2( 475.015, 266.02 )
+position = Vector2( 842, 751 )
+isMimic = true
 
 [node name="barrel10" parent="destroy/barrels" instance=ExtResource( 6 )]
-position = Vector2( 434.755, 77.4356 )
+position = Vector2( 189, 745 )
 isMimic = true
 has_coin = true
 
 [node name="barrel11" parent="destroy/barrels" instance=ExtResource( 6 )]
-position = Vector2( 437.934, 56.2464 )
+position = Vector2( 211, 745 )
 
 [node name="barrel12" parent="destroy/barrels" instance=ExtResource( 6 )]
-position = Vector2( 413.566, 62.6031 )
+position = Vector2( 167, 745 )
 
 [node name="barrel13" parent="destroy/barrels" instance=ExtResource( 6 )]
 position = Vector2( 60.7649, 128.29 )
@@ -98,32 +101,35 @@ position = Vector2( 101.024, 77.4356 )
 [node name="chests" type="Node2D" parent="destroy"]
 
 [node name="chest" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 234.882, 270.952 )
+position = Vector2( 203, 850 )
 
 [node name="chest2" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 293.565, 268.835 )
+position = Vector2( 296, 851 )
 isMimic = true
 has_coin = true
 
 [node name="chest3" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 319.028, 268.123 )
+position = Vector2( 272, 850 )
 
 [node name="chest4" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 264.581, 269.538 )
+position = Vector2( 225, 851 )
 
 [node name="chest5" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 348.727, 266.709 )
+position = Vector2( 249, 850 )
 isMimic = true
 has_coin = true
 
 [node name="chest6" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 480.249, 166.3 )
+position = Vector2( 1428, 745 )
+isMimic = true
 
 [node name="chest7" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 362.869, 166.3 )
+position = Vector2( 1284, 801 )
+isMimic = true
 
 [node name="chest8" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 383.375, 184.685 )
+position = Vector2( 998, 798 )
+isMimic = true
 
 [node name="chest9" parent="destroy/chests" instance=ExtResource( 5 )]
 position = Vector2( 98.9056, 54.1274 )
@@ -140,10 +146,10 @@ has_coin = true
 position = Vector2( 39.5756, 139.944 )
 
 [node name="chest13" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 391.317, 63.6626 )
+position = Vector2( 187, 765 )
 
 [node name="chest14" parent="destroy/chests" instance=ExtResource( 5 )]
-position = Vector2( 479.253, 61.5437 )
+position = Vector2( 165, 765 )
 
 [node name="Player" type="Node2D" parent="."]
 
