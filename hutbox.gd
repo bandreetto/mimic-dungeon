@@ -2,7 +2,7 @@ extends Area2D
 
 onready var timer = $Timer
 onready var collision = $CollisionShape2D
-const hitEffect = preload("res://scenes/effects/hit/hitEffect.tscn")
+const hitEffect = preload("res://scenes/player/hitEffect/playerHitEffect.tscn")
 var invincible = false setget set_invincible
 signal invincibility_started
 signal invincibility_ended

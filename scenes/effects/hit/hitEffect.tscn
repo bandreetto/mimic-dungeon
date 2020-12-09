@@ -1,31 +1,32 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=9 format=2]
 
 [ext_resource path="res://hitEffect.gd" type="Script" id=1]
 [ext_resource path="res://assets/images/hit.png" type="Texture" id=2]
+[ext_resource path="res://assets/sounds/impact.wav" type="AudioStream" id=3]
 
-[sub_resource type="AtlasTexture" id=4]
+[sub_resource type="AtlasTexture" id=1]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 564, 0, 188, 188 )
 
-[sub_resource type="AtlasTexture" id=5]
+[sub_resource type="AtlasTexture" id=2]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 752, 0, 188, 188 )
 
-[sub_resource type="AtlasTexture" id=7]
+[sub_resource type="AtlasTexture" id=3]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 564, 188, 188, 188 )
 
-[sub_resource type="AtlasTexture" id=8]
+[sub_resource type="AtlasTexture" id=4]
 flags = 4
 atlas = ExtResource( 2 )
 region = Rect2( 752, 188, 188, 188 )
 
-[sub_resource type="SpriteFrames" id=6]
+[sub_resource type="SpriteFrames" id=5]
 animations = [ {
-"frames": [ SubResource( 4 ), SubResource( 5 ), SubResource( 7 ), SubResource( 8 ) ],
+"frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
 "loop": true,
 "name": "hit",
 "speed": 15.0
@@ -33,8 +34,13 @@ animations = [ {
 
 [node name="hitEffect" type="AnimatedSprite"]
 scale = Vector2( 0.458332, 0.466618 )
-frames = SubResource( 6 )
+frames = SubResource( 5 )
 animation = "hit"
-frame = 2
+frame = 1
 playing = true
 script = ExtResource( 1 )
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+pitch_scale = 3.44
+autoplay = true

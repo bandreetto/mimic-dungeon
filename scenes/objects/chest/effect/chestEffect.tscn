@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://assets/destructable/Destructible Objects Sprite Sheet.png" type="Texture" id=1]
 [ext_resource path="res://scenes/objects/chest/effect/chestEffect.gd" type="Script" id=2]
-
+[ext_resource path="res://assets/sounds/mimicDie.wav" type="AudioStream" id=3]
 
 [sub_resource type="AtlasTexture" id=1]
 flags = 4
@@ -43,6 +43,11 @@ script = ExtResource( 2 )
 [node name="sprite" type="AnimatedSprite" parent="."]
 frames = SubResource( 6 )
 animation = "destroyed"
-frame = 1
+frame = 2
 playing = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+volume_db = -21.0
+autoplay = true
 [connection signal="animation_finished" from="sprite" to="." method="_on_sprite_animation_finished"]
