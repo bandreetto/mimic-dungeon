@@ -34,9 +34,10 @@ animations = [ {
 
 [node name="hitEffect" type="AnimatedSprite"]
 scale = Vector2( 0.458332, 0.466618 )
+z_index = 2
 frames = SubResource( 5 )
 animation = "hit"
-frame = 1
+frame = 3
 playing = true
 script = ExtResource( 1 )
 
