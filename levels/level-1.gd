@@ -4,9 +4,8 @@ onready var timer = $Player/resetTimer
 var coins = 0 setget set_coins
 
 func set_coins(value):
-	if value >= 3:
-		get_tree().change_scene("res://levels/Level2/Level-2.tscn")
-
+	pass
+	
 func _ready():
 	PlayerStats.set_health(5)
 	PlayerStats.collect_coins(0)
