@@ -14,6 +14,8 @@ onready var sprite = $sprite
 onready var softCollision = $softCollision
 onready var wanderController = $wanderController
 
+signal is_dead
+
 enum {
 	IDLE, WANDER, CHASE
 }
@@ -24,6 +26,7 @@ var has_coin = false  setget set_has_coin
 
 func _ready():
 	stats.set_health(20)
+	connect("is_dead", get_tree().get_current_scene(), "_on_boss_is_dead")
 
 func set_has_coin(value):
 	has_coin = value
@@ -82,6 +85,7 @@ func _on_stats_no_health():
 	$hurtbox.queue_free()
 	death_effect()
 	drop_coin()
+	emit_signal("is_dead")
 
 func _on_Timer_timeout():
 	queue_free()
@@ -104,3 +108,7 @@ func hit_effect():
 	var main = get_tree().current_scene
 	instance.global_position = global_position
 	main.add_child(instance)
+
+
+func _on_boss_is_dead():
+	pass # Replace with function body.
