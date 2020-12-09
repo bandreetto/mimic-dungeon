@@ -10,6 +10,9 @@ onready var swordHitbox = $Sprite/Swordhit
 onready var hurtBox = $hurtbox
 onready var stats = PlayerStats
 onready var menuTimer = $menuTimer
+onready var attack1 = $Sprite/Swordhit/attack1
+onready var attack2 = $Sprite/Swordhit/attack2
+onready var attack3 = $Sprite/Swordhit/attack3
 
 signal is_dead
 signal collected_coin
@@ -75,9 +78,9 @@ func process_attacks():
 
 func reset_collisions():
 	if Input.is_action_just_released("ui_select") or Input.is_action_just_released("attack2") or Input.is_action_just_released("attack3"):
-		$Sprite/Swordhit/attack1.set_deferred("disabled", true)
-		$Sprite/Swordhit/attack2.set_deferred("disabled", true)
-		$Sprite/Swordhit/attack3.set_deferred("disabled", true)
+		attack1.disabled = true
+		attack2.disabled = true
+		attack3.disabled = true
 				
 func _on_hurtbox_area_entered(area):
 	stats.health -= 1
