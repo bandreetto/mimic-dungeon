@@ -24,7 +24,6 @@ func _physics_process(delta):
 
 	if process_attacks():
 		if Input.is_action_pressed("ui_select"):
-			print("attack1")
 			animationPlayer.play("attack1")
 		if Input.is_action_pressed("attack2"):
 			animationPlayer.play("attack2")
