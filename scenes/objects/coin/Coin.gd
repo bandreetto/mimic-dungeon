@@ -11,7 +11,7 @@ func _ready():
 func _on_Coin_body_entered(body):
 	PlayerStats.collect_coins(1)
 	sound.play()
-	sprite.free()
+	sprite.queue_free()
 	timer.start(1)
 
 func _on_Timer_timeout():
