@@ -4,7 +4,27 @@ const dieEffect = preload("res://scenes/player/deathEffect/playerDeathEffect.tsc
 const velocity = Vector2(0,0)
 const SPEED = 100
 
+enum PlayerStates {
+	idle
+	attack1
+	attack2
+	attack3
+	moving
+}
+
 var animationPlayer = null
+var playerState = PlayerStates.idle
+
+const attack1Cooldown = 1
+var attack1Timer = 0
+
+const attack2Cooldown = 1
+var attack2Timer = 0
+
+const attack3Cooldown = 1
+var attack3Timer = 0
+
+const attackFollowupDelta = 1.5
 
 onready var swordHitbox = $Sprite/Swordhit
 onready var hurtBox = $hurtbox
@@ -24,40 +44,58 @@ func _ready():
 	
 func _physics_process(delta):
 	reset_collisions()
-
+	attack1Timer += delta
+	attack2Timer += delta
+	attack3Timer += delta
 	if process_attacks():
-		if Input.is_action_pressed("ui_select"):
-			animationPlayer.play("attack1")
-		if Input.is_action_pressed("attack2"):
-			animationPlayer.play("attack2")
-		if Input.is_action_pressed("attack3"):
-			animationPlayer.play("attack3")
-	else:
+		if Input.is_action_just_pressed("attack1") and attack1Timer > attack1Cooldown:
+			playerState = PlayerStates.attack1
+		if Input.is_action_just_pressed("attack2") and attack2Timer > attack2Cooldown:
+			playerState = PlayerStates.attack2
+		if Input.is_action_just_pressed("attack3") and attack3Timer > attack3Cooldown:
+			playerState = PlayerStates.attack3
+	elif process_movements():
+		playerState = PlayerStates.moving
 		if Input.is_action_pressed("ui_up"):
 			velocity.y = -SPEED
-			animationPlayer.play('walk')
 			swordHitbox.knockback_vector = Vector2.UP
-		elif Input.is_action_pressed("ui_down"):
+		if Input.is_action_pressed("ui_down"):
 			velocity.y = SPEED
-			animationPlayer.play('walk')
 			swordHitbox.knockback_vector = Vector2.DOWN
-		elif Input.is_action_pressed("ui_right"):
+		if Input.is_action_pressed("ui_right"):
 			velocity.x = SPEED
-			animationPlayer.play('walk')
 			$Sprite.scale.x = 1
 			swordHitbox.knockback_vector = Vector2.RIGHT
-		elif Input.is_action_pressed("ui_left"):
+		if Input.is_action_pressed("ui_left"):
 			velocity.x = -SPEED
-			animationPlayer.play('walk')
 			$Sprite.scale.x = -1
 			swordHitbox.knockback_vector = Vector2.LEFT
-		else:
+	else:
+		playerState = PlayerStates.idle
+		
+	move_and_slide(velocity)
+	processPlayerState()
+	
+	velocity.x = lerp(velocity.x, 0, 0.2)
+	velocity.y = lerp(velocity.y, 0, 0.2)
+
+func processPlayerState():
+	if animationPlayer.current_animation.begins_with('attack') and animationPlayer.is_playing():
+		return
+	match playerState:
+		PlayerStates.idle:
 			animationPlayer.play('idle')
-		
-		move_and_slide(velocity)
-		
-		velocity.x = lerp(velocity.x, 0, 0.2)
-		velocity.y = lerp(velocity.y, 0, 0.2)
+		PlayerStates.moving:
+			animationPlayer.play('walk')
+		PlayerStates.attack1:
+			attack1Timer = 0
+			animationPlayer.play('attack1')
+		PlayerStates.attack2:
+			attack2Timer = 0
+			animationPlayer.play('attack2')
+		PlayerStates.attack3:
+			attack3Timer = 0
+			animationPlayer.play('attack3')
 
 func on_death_called():
 	death_effect()
@@ -72,12 +110,17 @@ func death_effect():
 	main.add_child(instance)
 
 func process_attacks():
-	if Input.is_action_pressed("ui_select") or Input.is_action_pressed("attack2") or Input.is_action_pressed("attack3"):
+	if Input.is_action_just_pressed("attack1") or Input.is_action_just_pressed("attack2") or Input.is_action_just_pressed("attack3"):
+		return true
+	return false
+
+func process_movements():
+	if Input.is_action_pressed("ui_up") or Input.is_action_pressed("ui_down") or Input.is_action_pressed("ui_right") or Input.is_action_pressed("ui_left"):
 		return true
 	return false
 
 func reset_collisions():
-	if Input.is_action_just_released("ui_select") or Input.is_action_just_released("attack2") or Input.is_action_just_released("attack3"):
+	if Input.is_action_just_released("attack1") or Input.is_action_just_released("attack2") or Input.is_action_just_released("attack3"):
 		attack1.disabled = true
 		attack2.disabled = true
 		attack3.disabled = true
