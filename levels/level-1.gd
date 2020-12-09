@@ -18,3 +18,5 @@ func _on_resetTimer_timeout():
 	queue_free()
 	get_tree().change_scene("res://scenes/menu/menu.tscn")
 
+func _on_boss_is_dead():
+	timer.start(3)

@@ -17,3 +17,6 @@ func set_health(value):
 func collect_coins(value):
 	coins += value
 	emit_signal("coins_changed", coins)
+
+func clear_coins():
+	coins = 0

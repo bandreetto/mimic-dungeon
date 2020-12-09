@@ -1,0 +1,80 @@
+[gd_scene load_steps=11 format=2]
+
+[ext_resource path="res://scenes/mimic/boss/boss.tres" type="SpriteFrames" id=1]
+[ext_resource path="res://scenes/mimic/boss/boss.gd" type="Script" id=2]
+[ext_resource path="res://scenes/stats/stats.tscn" type="PackedScene" id=3]
+[ext_resource path="res://scenes/mimic/detectionZone/PlayerDetectionZone.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/effects/damage/hitbox/hitbox.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/mimic/softCollision/softCollision.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/mimic/wanderController/wanderController.tscn" type="PackedScene" id=7]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 213.075, 129.708 )
+
+[sub_resource type="CapsuleShape2D" id=2]
+radius = 10.0233
+height = 0.798616
+
+[sub_resource type="CapsuleShape2D" id=3]
+radius = 5.55354
+height = 22.5622
+
+[node name="mimic2" type="KinematicBody2D"]
+scale = Vector2( 3, 3 )
+z_index = 1
+collision_layer = 0
+collision_mask = 2
+script = ExtResource( 2 )
+
+[node name="sprite" type="AnimatedSprite" parent="."]
+scale = Vector2( 1.3477, 1.21989 )
+frames = ExtResource( 1 )
+animation = "attack"
+frame = 3
+playing = true
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2( 0, 5 )
+scale = Vector2( 0.0566734, 0.0836182 )
+shape = SubResource( 1 )
+
+[node name="stats" parent="." instance=ExtResource( 3 )]
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="PlayerDetectionZone" parent="." instance=ExtResource( 4 )]
+position = Vector2( 0.978378, 2.8208 )
+
+[node name="hurtbox" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox"]
+position = Vector2( -0.704028, 10.2967 )
+shape = SubResource( 2 )
+
+[node name="hitbox" parent="." instance=ExtResource( 5 )]
+collision_layer = 0
+collision_mask = 16
+
+[node name="CollisionShape2D" parent="hitbox" index="0"]
+position = Vector2( -0.481685, 10.1864 )
+scale = Vector2( 1.33458, 0.557181 )
+shape = SubResource( 3 )
+
+[node name="softCollision" parent="." instance=ExtResource( 6 )]
+
+[node name="CollisionShape2D" parent="softCollision" index="0"]
+position = Vector2( -0.252577, 11.6898 )
+
+[node name="wanderController" parent="." instance=ExtResource( 7 )]
+position = Vector2( 0.047465, 0.047465 )
+[connection signal="no_health" from="stats" to="." method="_on_stats_no_health"]
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hutbox_area_entered"]
+[connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+
+[editable path="hitbox"]
+
+[editable path="softCollision"]

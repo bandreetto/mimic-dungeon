@@ -60,6 +60,7 @@ func _physics_process(delta):
 func on_death_called():
 	death_effect()
 	emit_signal("is_dead")
+	PlayerStats.clear_coins()
 	queue_free()
 
 func death_effect():
