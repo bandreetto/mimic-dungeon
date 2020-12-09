@@ -80,12 +80,14 @@ func _physics_process(delta):
 	velocity.y = lerp(velocity.y, 0, 0.2)
 
 func processPlayerState():
-	if animationPlayer.current_animation.begins_with('attack') and animationPlayer.is_playing():
-		return
 	match playerState:
 		PlayerStates.idle:
+			if animationPlayer.current_animation.begins_with('attack') and animationPlayer.is_playing():
+				return
 			animationPlayer.play('idle')
 		PlayerStates.moving:
+			if animationPlayer.current_animation.begins_with('attack') and animationPlayer.is_playing():
+				return
 			animationPlayer.play('walk')
 		PlayerStates.attack1:
 			attack1Timer = 0

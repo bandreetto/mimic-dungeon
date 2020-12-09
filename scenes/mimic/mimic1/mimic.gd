@@ -101,7 +101,7 @@ func drop_coin():
 	if has_coin:
 		var instance = coin.instance()
 		var main = get_tree().current_scene
-		instance.global_position = Vector2(rand_range(206, 306),rand_range(130,190))
+		instance.global_position = global_position
 		main.add_child(instance)
 		
 func hit_effect():
