@@ -1,14 +1,13 @@
-[gd_scene load_steps=12 format=2]
+[gd_scene load_steps=13 format=2]
 
 [ext_resource path="res://scenes/player/player.gd" type="Script" id=1]
 [ext_resource path="res://assets/player/adventurer-sprite-sheet.png" type="Texture" id=2]
 [ext_resource path="res://scenes/player/Swordhit.gd" type="Script" id=3]
 [ext_resource path="res://scenes/effects/damage/hurtbox/hurtbox.tscn" type="PackedScene" id=4]
 [ext_resource path="res://assets/sounds/swordSwing.wav" type="AudioStream" id=5]
-[ext_resource path="res://assets/sounds/running.wav" type="AudioStream" id=6]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 7.29937, 12.0038 )
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 11.575, 9.31774 )
 
 [sub_resource type="CapsuleShape2D" id=2]
 radius = 4.83766
@@ -30,7 +29,7 @@ tracks/0/keys = {
 "values": [ 27, 28, 29, 30, 31, 32, 33 ]
 }
 tracks/1/type = "value"
-tracks/1/path = NodePath("Sprite/Swordhit/SwordCollision:disabled")
+tracks/1/path = NodePath("Sprite/Swordhit/attack1:disabled")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/imported = false
@@ -58,6 +57,100 @@ tracks/2/keys = {
 "stream": null
 } ],
 "times": PoolRealArray( 0.1, 0.2 )
+}
+
+[sub_resource type="Animation" id=6]
+resource_name = "attack2"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 52, 53, 54, 55, 56, 57, 58, 59 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+} ],
+"times": PoolRealArray( 0.1, 0.4 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Swordhit/attack2:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, false, false, false, true, true ]
+}
+
+[sub_resource type="Animation" id=7]
+resource_name = "attack3"
+tracks/0/type = "value"
+tracks/0/path = NodePath("Sprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/keys = {
+"times": PoolRealArray( 0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6, 0.7 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ 39, 40, 41, 42, 43, 44, 45, 46 ]
+}
+tracks/1/type = "audio"
+tracks/1/path = NodePath("AudioStreamPlayer")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/keys = {
+"clips": [ {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": ExtResource( 5 )
+}, {
+"end_offset": 0.0,
+"start_offset": 0.0,
+"stream": null
+} ],
+"times": PoolRealArray( -0.1, 0.1, 0.4 )
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Sprite/Swordhit/attack3:disabled")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/keys = {
+"times": PoolRealArray( 0, 0.1, 0.4, 0.5, 0.8 ),
+"transitions": PoolRealArray( 1, 1, 1, 1, 1 ),
+"update": 1,
+"values": [ true, false, false, true, true ]
 }
 
 [sub_resource type="Animation" id=4]
@@ -112,7 +205,7 @@ script = ExtResource( 1 )
 texture = ExtResource( 2 )
 vframes = 16
 hframes = 13
-frame = 13
+frame = 40
 
 [node name="Swordhit" type="Area2D" parent="Sprite"]
 scale = Vector2( 0.993217, 0.947333 )
@@ -120,9 +213,19 @@ collision_layer = 0
 collision_mask = 40
 script = ExtResource( 3 )
 
-[node name="SwordCollision" type="CollisionShape2D" parent="Sprite/Swordhit"]
-position = Vector2( 12.1737, 5.24408 )
-shape = SubResource( 1 )
+[node name="attack1" type="CollisionShape2D" parent="Sprite/Swordhit"]
+position = Vector2( 5.04628, 6.24041 )
+shape = SubResource( 8 )
+disabled = true
+
+[node name="attack2" type="CollisionPolygon2D" parent="Sprite/Swordhit"]
+scale = Vector2( 1, 1 )
+build_mode = 1
+polygon = PoolVector2Array( -5.47366, 15.3551, 17.743, 14.9374, 25.0888, 3.97739, 4.26712, 3.39894 )
+disabled = true
+
+[node name="attack3" type="CollisionPolygon2D" parent="Sprite/Swordhit"]
+polygon = PoolVector2Array( -9.66263, 23.2314, -4.01199, 25.6012, 14.9176, 14.9374, 21.1333, 5.16226, 31.8696, -10.5372, 7.00675, -7.27883, -8.79978, 13.8606 )
 disabled = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -133,6 +236,8 @@ shape = SubResource( 2 )
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 autoplay = "idle"
 anims/attack1 = SubResource( 3 )
+anims/attack2 = SubResource( 6 )
+anims/attack3 = SubResource( 7 )
 anims/idle = SubResource( 4 )
 anims/walk = SubResource( 5 )
 
@@ -145,7 +250,7 @@ collision_layer = 16
 position = Vector2( 0.341215, 1.49796 )
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
-stream = ExtResource( 6 )
+stream = ExtResource( 5 )
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
 
 [editable path="hurtbox"]

@@ -20,10 +20,16 @@ func _ready():
 	swordHitbox.knockback_vector = Vector2.ZERO
 	
 func _physics_process(delta):
-	if Input.is_action_just_released("ui_select"):
-		$Sprite/Swordhit/SwordCollision.set_deferred("disabled", true)
-	if Input.is_action_pressed("ui_select"):
-		animationPlayer.play("attack1")
+	reset_collisions()
+
+	if process_attacks():
+		if Input.is_action_pressed("ui_select"):
+			print("attack1")
+			animationPlayer.play("attack1")
+		if Input.is_action_pressed("attack2"):
+			animationPlayer.play("attack2")
+		if Input.is_action_pressed("attack3"):
+			animationPlayer.play("attack3")
 	else:
 		if Input.is_action_pressed("ui_up"):
 			velocity.y = -SPEED
@@ -62,6 +68,17 @@ func death_effect():
 	instance.global_position = (global_position + Vector2(5,5))
 	main.add_child(instance)
 
+func process_attacks():
+	if Input.is_action_pressed("ui_select") or Input.is_action_pressed("attack2") or Input.is_action_pressed("attack3"):
+		return true
+	return false
+
+func reset_collisions():
+	if Input.is_action_just_released("ui_select") or Input.is_action_just_released("attack2") or Input.is_action_just_released("attack3"):
+		$Sprite/Swordhit/attack1.set_deferred("disabled", true)
+		$Sprite/Swordhit/attack2.set_deferred("disabled", true)
+		$Sprite/Swordhit/attack3.set_deferred("disabled", true)
+				
 func _on_hurtbox_area_entered(area):
 	stats.health -= 1
 	hurtBox.start_invincibility(1)
